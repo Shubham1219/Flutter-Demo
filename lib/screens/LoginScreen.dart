@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:sample_app/services/Locator.dart';
-import 'package:sample_app/services/NavigationService.dart';
 import 'package:sample_app/utitlities/ImageConstants.dart';
 import 'package:sample_app/utitlities/Widgets.dart';
 import 'package:sample_app/utitlities/class_media_query.dart';
 import 'package:sample_app/utitlities/common_functions.dart';
 import 'package:sample_app/utitlities/routes_constants.dart';
+import 'package:sample_app/utitlities/utilities.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -15,31 +14,28 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  NavigationService _navigationService = locator<NavigationService>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+      body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: ClassMediaQuery.screenHeight / 5,),
+            SizedBox(height: ClassMediaQuery.notchHeight,),
             circleImage(ImageConstants.loginLogo),
             SizedBox(height: 20,),
             _emailTextField(),
             _passwordTextField(),
             SizedBox(height: 20,),
             button('Login', (){
-              _navigationService.navigateWithRemovingAllPrevious(Home_Screen);
+              navigateWithNoBackStackScreen(Home_Screen);
             }),
             SizedBox(height: 15,),
             textStyleWithMediumSize('OR'),
             SizedBox(height: 15,),
             button('Sign Up', (){
-              _navigationService.navigateWithBack(Sign_Up);
+              navigateWithBackStackScreen(Sign_Up);
             }),
-
-
           ],
         ),
       ),
@@ -50,7 +46,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Padding(
       padding: EdgeInsets.all(10),
       child: Container(
-        height: 70,
+        height: 60,
           alignment: Alignment.centerLeft,
           decoration: BoxDecoration(
               border: Border.all(
@@ -75,7 +71,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Padding(
       padding: EdgeInsets.all(10),
       child: Container(
-          height: 70,
+          height: 60,
           alignment: Alignment.centerLeft,
           decoration: BoxDecoration(
               border: Border.all(
@@ -95,6 +91,4 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
-
-
 }

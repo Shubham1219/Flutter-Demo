@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sample_app/screens/DashboardScreen.dart';
 import 'package:sample_app/screens/HomeScreen.dart';
 import 'package:sample_app/screens/LoginScreen.dart';
 import 'package:sample_app/screens/SignUpScreen.dart';
@@ -17,6 +18,9 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       break;
     case Sign_Up :
       return MaterialPageRoute(builder: (context) => SignUpScreen());
+      break;
+    case Dashboard_Screen :
+      return MaterialPageRoute(builder: (context) => DashboardScreen());
       break;
     default:
        return MaterialPageRoute(builder: (context) => SplashScreen());

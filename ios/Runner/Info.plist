@@ -32,7 +32,16 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+
 	<key>UISupportedInterfaceOrientations~ipad</key>
+
+    <key>NSCameraUsageDescription</key>
+    <string>Get camera permission to take photos and record videos</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>Obtain microphone permission to record video</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Obtain album permission to select avatar photos</string>
+
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>

@@ -1,6 +1,10 @@
 //Check for internet Connection
 import 'dart:io';
 
+import 'package:sample_app/services/Locator.dart';
+import 'package:sample_app/services/NavigationService.dart';
+import 'package:sample_app/utitlities/routes_constants.dart';
+
 Future<bool> isConnectedToInternet() async {
   try {
     final result = await InternetAddress.lookup('google.com')
@@ -13,4 +17,13 @@ Future<bool> isConnectedToInternet() async {
   } catch (_) {
     return false;
   }
+}
+void navigateWithNoBackStackScreen(routeName){
+  NavigationService _navigationService = locator<NavigationService>();
+  _navigationService.navigateWithRemovingAllPrevious(routeName);
+}
+
+void navigateWithBackStackScreen(routeName){
+  NavigationService _navigationService = locator<NavigationService>();
+  _navigationService.navigateWithBack(routeName);
 }

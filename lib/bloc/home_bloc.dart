@@ -15,7 +15,7 @@ class HomeBloc extends BaseBloc{
     if (await isConnectedToInternet()) {
       Response response = await _repo.getImage(count);
       //timer is used to show shimmer animation to little longer
-      Timer(Duration(seconds: 2),
+      Timer(Duration(seconds: 5),
               ()=>
               streamController.add(response)
       );
