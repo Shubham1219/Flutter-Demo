@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:sample_app/screens/PaginationScreen.dart';
+import 'package:sample_app/utitlities/Constants.dart';
+import 'package:sample_app/utitlities/common_functions.dart';
 import 'HomeScreen.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -32,7 +33,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           checkForDoubleBackPress =false;
           SystemNavigator.pop();
         } else {
-          Fluttertoast.showToast(msg: 'Again Press Back to exit the app');
+          showToast(app_exit);
           checkForDoubleBackPress = false;
           Future.delayed(Duration(seconds: 1), () {
             checkForDoubleBackPress = true;

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
+import 'package:sample_app/utitlities/common_functions.dart';
 import 'message.dart';
 
 class ApiService {
@@ -24,47 +25,63 @@ class ApiService {
     required String url,
     dynamic body,
     bool encodeData = false,
+
   })async {
     try {
 
-      http.Response response;
+      http.Response? response;
       var jsonBody = body;
 
       if (encodeData) {
         jsonBody = json.encode(body);
       }
 
-      switch (apiType.get) {
-        case apiType.get:
-          response = await http
-              .get(Uri.parse(url), headers: _userHeader)
-              .timeout(_timeoutDuration);
-          break;
-        case apiType.put:
-          response = await http
-              .put(Uri.parse(url), headers: _userHeader, body: jsonBody)
-              .timeout(_timeoutDuration);
-          break;
-        case apiType.post:
-          response = await http
-              .post(Uri.parse(url), headers: _userHeader, body: jsonBody)
-              .timeout(_timeoutDuration);
-          break;
+      if(apiType.get!=null){
+        response = await http
+            .get(Uri.parse(url), headers: _userHeader)
+            .timeout(_timeoutDuration);
+      }else if(apiType.put!=null){
+        response = await http
+            .put(Uri.parse(url), headers: _userHeader, body: jsonBody)
+            .timeout(_timeoutDuration);
+      }else if(apiType.post!=null){
+        response = await http
+            .post(Uri.parse(url), headers: _userHeader, body: jsonBody)
+            .timeout(_timeoutDuration);
       }
-      print("Response Body:${response.body}");
+
+      // switch (apiType.get) {
+      //   case apiType.get:
+      //     response = await http
+      //         .get(Uri.parse(url), headers: _userHeader)
+      //         .timeout(_timeoutDuration);
+      //     break;
+      //   case apiType.put:
+      //     response = await http
+      //         .put(Uri.parse(url), headers: _userHeader, body: jsonBody)
+      //         .timeout(_timeoutDuration);
+      //     break;
+      //   case apiType.post:
+      //     response = await http
+      //         .post(Uri.parse(url), headers: _userHeader, body: jsonBody)
+      //         .timeout(_timeoutDuration);
+      //     break;
+      // }
+      print("Response Body:${response!.body}");
       if (response.statusCode == 200) {
         return json.decode(response.body);
       } else {
         throw new Exception('EXCEPTION');
       }
     } on TimeoutException {
-      print(CONNECTION_TIMEOUT);
+      showToast(CONNECTION_TIMEOUT);
       return errorMap(ERROR_CONNECTION_TIMEOUT, CONNECTION_TIMEOUT);
     } on SocketException {
-      print(SOCKET_EXCEPTION);
+      showToast(SOCKET_EXCEPTION);
       return errorMap(ERROR_SOCKET_EXCEPTION, SOCKET_EXCEPTION);
     } catch (e) {
       print("Exception ::$e");
+      showToast(e.toString());
       return errorMap(ERROR_EXCEPTION, ERROR);
     }
   }

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:sample_app/utitlities/stuff.dart';
 
 import 'custom_loader.dart';
@@ -38,6 +39,10 @@ Widget textStyleWithMediumSize(String text){
     child: Text(text,
     style: styleAppText(Colors.black),),
   );
+}
+
+showToast(String message){
+  Fluttertoast.showToast(msg: message);
 }
 
 

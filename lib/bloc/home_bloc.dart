@@ -3,6 +3,9 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:sample_app/models/Response.dart';
 import 'package:sample_app/repository/BaseRepo.dart';
+import 'package:sample_app/services/message.dart';
+import 'package:sample_app/utitlities/Widgets.dart';
+import 'package:sample_app/utitlities/common_functions.dart';
 import 'package:sample_app/utitlities/utilities.dart';
 import 'BaseBloc.dart';
 
@@ -18,6 +21,10 @@ class HomeBloc extends BaseBloc{
               ()=>
               streamController.add(response)
       );
+    }else{
+      failureWidget(context, ERROR_SOCKET_EXCEPTION, (){
+        closeBottomSheet(context);
+      });
     }
   }
 
