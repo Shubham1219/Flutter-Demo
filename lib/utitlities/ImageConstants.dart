@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 
 class ImageConstants {
  static const String splashScreenImg = 'assets/images/splash_screen.jpeg';

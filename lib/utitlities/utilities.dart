@@ -3,7 +3,6 @@ import 'dart:io';
 
 import 'package:sample_app/services/Locator.dart';
 import 'package:sample_app/services/NavigationService.dart';
-import 'package:sample_app/utitlities/routes_constants.dart';
 
 Future<bool> isConnectedToInternet() async {
   try {

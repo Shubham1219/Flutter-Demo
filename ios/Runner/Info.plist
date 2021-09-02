@@ -35,12 +35,8 @@
 
 	<key>UISupportedInterfaceOrientations~ipad</key>
 
-    <key>NSCameraUsageDescription</key>
-    <string>Get camera permission to take photos and record videos</string>
-    <key>NSMicrophoneUsageDescription</key>
-    <string>Obtain microphone permission to record video</string>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>Obtain album permission to select avatar photos</string>
+
+
 
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
@@ -50,5 +46,11 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSPhotoLibraryUsageDescription</key>
+    <string>Need to upload image</string>
+    <key>NSCameraUsageDescription</key>
+    <string>Need to upload image</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>Need to upload image</string>
 </dict>
 </plist>

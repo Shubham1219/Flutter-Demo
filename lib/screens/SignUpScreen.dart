@@ -177,9 +177,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
     XFile? image = await picker.pickImage(
         source: ImageSource.camera
     );
-
     setState(() {
-      path = image!.path.toString();
+      if(image!=null) {
+        path = image.path.toString();
+      }
     });
 
   }
@@ -192,7 +193,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
 
     setState(() {
-      path = image!.path.toString();
+      if(image!=null) {
+        path = image.path.toString();
+      }
     });
 
   }

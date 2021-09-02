@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:sample_app/models/Response.dart';
 import 'package:sample_app/repository/BaseRepo.dart';
 import 'package:sample_app/utitlities/utilities.dart';
-
 import 'BaseBloc.dart';
 
 class HomeBloc extends BaseBloc{

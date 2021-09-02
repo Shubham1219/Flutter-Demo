@@ -101,7 +101,6 @@ class _ShimmerEffectState extends State<ShimmerEffect> {
                   width: 200,
                   height: 200,
                   color: Colors.white,
-
                 ),
               ),
 
