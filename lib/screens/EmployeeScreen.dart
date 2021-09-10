@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:sample_app/bloc/home_bloc.dart';
 import 'package:sample_app/models/GetEmployeeResponse.dart';
 import 'package:sample_app/screens/EmployeeListItem.dart';
-import 'package:sample_app/utitlities/class_media_query.dart';
 import 'package:sample_app/utitlities/custom_loader.dart';
 
 class EmployeeScreen extends StatefulWidget {

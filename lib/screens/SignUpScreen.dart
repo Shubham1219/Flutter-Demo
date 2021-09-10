@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:sample_app/utitlities/Widgets.dart';
@@ -14,7 +15,7 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-
+  String countryCode = '+91';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -94,7 +95,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
         ),
       ),
     );
-
   }
 
   Widget _nameTextField(String hint) {
@@ -130,18 +130,65 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 color: Colors.black,
               ),
               borderRadius: BorderRadius.all(Radius.circular(10))),
-          child: Padding(
-              padding: EdgeInsets.only(left: 10),
-              child: TextFormField(
-              decoration: InputDecoration.collapsed(
-                hintText: hint,
-              ),
+          child: Container(
+            alignment: Alignment.centerLeft,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  width: 15,
                 ),
-          )
-      ),
+                InkWell(
+                    onTap: () {
+                      showCountryPicker(
+                          context: context,
+                          countryListTheme: CountryListThemeData(
+                            flagSize: 25,
+                            backgroundColor: Colors.white,
+                            textStyle:
+                                TextStyle(fontSize: 16, color: Colors.blueGrey),
+                            //Optional. Sets the border radius for the bottomsheet.
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(20.0),
+                              topRight: Radius.circular(20.0),
+                            ),
+                            //Optional. Styles the search field.
+                            inputDecoration: InputDecoration(
+                              labelText: 'Search',
+                              hintText: 'Start typing to search',
+                              prefixIcon: const Icon(Icons.search),
+                              border: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color:
+                                      const Color(0xFF8C98A8).withOpacity(0.2),
+                                ),
+                              ),
+                            ),
+                          ),
+                          onSelect: (Country country) {
+                            setState(() {
+                              countryCode=country.countryCode;
+                            });
+                          }
+
+                      );
+                    },
+                    child: Text(countryCode)),
+                SizedBox(
+                  width: 15,
+                ),
+                Flexible(
+                  child: TextFormField(
+                    decoration: InputDecoration.collapsed(
+                      hintText: hint,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          )),
     );
   }
-
 
   void _showPicker(context) {
     showModalBottomSheet(
@@ -174,29 +221,50 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
 
   _imgFromCamera() async {
-    XFile? image = await picker.pickImage(
-        source: ImageSource.camera
-    );
+    XFile? image = await picker.pickImage(source: ImageSource.camera);
     setState(() {
-      if(image!=null) {
+      if (image != null) {
         path = image.path.toString();
       }
     });
-
   }
 
   String? path;
   ImagePicker picker = ImagePicker();
+
   _imgFromGallery() async {
-    XFile? image = await picker.pickImage(
-        source: ImageSource.gallery
-    );
+    XFile? image = await picker.pickImage(source: ImageSource.gallery);
 
     setState(() {
-      if(image!=null) {
+      if (image != null) {
         path = image.path.toString();
       }
     });
-
   }
+
+/* showCountryPicker(
+          context: context,
+          countryListTheme: CountryListThemeData(
+            flagSize: 25,
+            backgroundColor: Colors.white,
+            textStyle: TextStyle(fontSize: 16, color: Colors.blueGrey),
+            //Optional. Sets the border radius for the bottomsheet.
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20.0),
+              topRight: Radius.circular(20.0),
+            ),
+            //Optional. Styles the search field.
+            inputDecoration: InputDecoration(
+              labelText: 'Search',
+              hintText: 'Start typing to search',
+              prefixIcon: const Icon(Icons.search),
+              border: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: const Color(0xFF8C98A8).withOpacity(0.2),
+                ),
+              ),
+            ),
+          ),
+          onSelect: (Country country) => print('Select country: ${country.displayName}'),
+        );*/
 }
