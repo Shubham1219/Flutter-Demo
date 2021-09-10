@@ -2,10 +2,15 @@ class SuccessResponse{
 
  late int statusCode;
  late String message;
+ SuccessResponse();
 
-  SuccessResponse(json){
-    statusCode = json['status_code'];
-    message = json['message'];
-  }
+ SuccessResponse.exception(String message){
+   this.message = message;
+ }
+
+ SuccessResponse.fromJson(Map<String, dynamic> parsedJson) {
+   statusCode = parsedJson['status'];
+   message = parsedJson['message'];
+ }
 
 }

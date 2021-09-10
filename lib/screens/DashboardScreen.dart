@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:sample_app/screens/EmployeeScreen.dart';
 import 'package:sample_app/screens/PaginationScreen.dart';
 import 'package:sample_app/utitlities/Constants.dart';
 import 'package:sample_app/utitlities/common_functions.dart';
@@ -21,7 +22,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     widgetOption = <Widget>[
       HomeScreen(),
       PaginationScreen(),
-      Text('Payment'),
+      EmployeeScreen(),
       Text('Profile')
     ];
   }
@@ -63,9 +64,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
             items: [
               BottomNavigationBarItem(icon: Icon(Icons.home), label: ('Home')),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.access_time), label: ('Booking')),
+                  icon: Icon(Icons.access_time), label: ('Pagination')),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.payment), label: ('Pagination')),
+                  icon: Icon(Icons.payment), label: ('EmployeeData')),
               BottomNavigationBarItem(
                   icon: Icon(Icons.person), label: ('Account'))
             ],

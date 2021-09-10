@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
+import 'package:sample_app/models/GetEmployeeResponse.dart';
 import 'package:sample_app/models/Response.dart';
 import 'package:sample_app/repository/BaseRepo.dart';
 import 'package:sample_app/services/message.dart';
@@ -27,10 +28,22 @@ class HomeBloc extends BaseBloc{
       });
     }
   }
+  StreamController<GetEmployeeResponse> employeeStreamController = StreamController();
+  getEmployeeData(BuildContext context) async {
+    if (await isConnectedToInternet()) {
+      GetEmployeeResponse response = await _repo.getEmployee();
+      employeeStreamController.add(response);
+    }else{
+      failureWidget(context, ERROR_SOCKET_EXCEPTION, (){
+        closeBottomSheet(context);
+      });
+    }
+  }
 
   @override
   dispose() {
     streamController.close();
+    employeeStreamController.close();
   }
 
 }
