@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sample_app/models/GetEmployeeResponse.dart';
 import 'package:sample_app/utitlities/class_media_query.dart';
+import 'package:sample_app/utitlities/routes_constants.dart';
+import 'package:sample_app/utitlities/utilities.dart';
 class EmployeeListItem extends StatelessWidget {
   const EmployeeListItem({
     required this.employeeData,
@@ -25,13 +27,18 @@ class EmployeeListItem extends StatelessWidget {
             shrinkWrap: true,
             itemCount: data.data.length,
             itemBuilder: (context, index) {
-              return Column(
-                children: [
-                  Text(data.data[index].employeeName),
-                  Text(data.data[index].employeeAge.toString()),
-                  Text(data.data[index].employeeSalary.toString()),
-                  Divider(thickness: 2,)
-                ],
+              return InkWell(
+                onTap: (){
+                  navigateWithBackStackScreen(Tab_Bar);
+                },
+                child: Column(
+                  children: [
+                    Text(data.data[index].employeeName),
+                    Text(data.data[index].employeeAge.toString()),
+                    Text(data.data[index].employeeSalary.toString()),
+                    Divider(thickness: 2,)
+                  ],
+                ),
               );
             },
           )

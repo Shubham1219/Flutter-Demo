@@ -4,6 +4,7 @@ import 'package:sample_app/screens/HomeScreen.dart';
 import 'package:sample_app/screens/LoginScreen.dart';
 import 'package:sample_app/screens/SignUpScreen.dart';
 import 'package:sample_app/screens/SplashScreen.dart';
+import 'package:sample_app/screens/TabBarScreen.dart';
 import 'package:sample_app/utitlities/routes_constants.dart';
 
 
@@ -21,6 +22,9 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       break;
     case Dashboard_Screen :
       return MaterialPageRoute(builder: (context) => DashboardScreen());
+      break;
+    case Tab_Bar :
+      return MaterialPageRoute(builder: (context) => TabBarScreen());
       break;
     default:
        return MaterialPageRoute(builder: (context) => SplashScreen());
