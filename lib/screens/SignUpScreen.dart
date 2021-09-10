@@ -1,9 +1,12 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:sample_app/models/request_model/SignUpRequest.dart';
+import 'package:sample_app/preference/SharedPreference.dart';
 import 'package:sample_app/utitlities/Widgets.dart';
 import 'package:sample_app/utitlities/common_functions.dart';
 import 'package:sample_app/utitlities/routes_constants.dart';
@@ -373,6 +376,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
       });
       return;
     }
-    navigateWithNoBackStackScreen(Dashboard_Screen);
+    SignUpRequest signUpRequest = SignUpRequest(firstName: firstName, lastName: lastName, email: email, countryCode: countryCode, phoneNumber: phone, image: "userImage");
+
+    await SharedPreference.setUserData(json.encode(signUpRequest).toString());
+
+    // await SharedPreference.getUserData();
+    SharedPreference.getUserData().then((value) {
+      print(value);
+    });
+
+
+
+    // navigateWithNoBackStackScreen(Dashboard_Screen);
   }
 }
