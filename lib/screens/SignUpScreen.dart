@@ -385,8 +385,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
       print(value);
     });
 
-
-
-    // navigateWithNoBackStackScreen(Dashboard_Screen);
+    navigateWithNoBackStackScreen(Dashboard_Screen);
   }
 }
